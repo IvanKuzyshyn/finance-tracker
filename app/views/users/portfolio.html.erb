@@ -1,0 +1,13 @@
+<h1>My Portfolio</h1>
+
+<div>
+  <h3>Search area</h3>
+  <%= form_tag "#", method: :get do %>
+    <div>
+      <%= text_field_tag :stock, params[:stock], placeholder: "Enter Stock Name" %>
+    </div>
+    <div>
+      <%= button_tag "Search", type: :submit %>
+    </div>
+  <% end %>
+</div>
