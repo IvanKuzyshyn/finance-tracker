@@ -6,7 +6,7 @@ class StocksController < ApplicationController
     if stock_symbol.present?
       render_stock_search_result(stock_symbol)
     else
-      render_no_stock_provided
+      render_flash_error("Stock name should not be empty")
     end
   end
 
@@ -27,13 +27,14 @@ class StocksController < ApplicationController
         end
       end
     rescue
-      flash[:alert] = "Please provide valid Stock name"
-      redirect_to portfolio_path
+      render_flash_error("Please provide valid Stock name")
     end
   end
 
-  def render_no_stock_provided
-    flash[:alert] = "Please provide Stock name"
-    redirect_to portfolio_path
+  def render_flash_error(message)
+    flash.now[:alert] = message
+    respond_to do |format|
+      format.js { render partial: "users/stock_search_result" }
+    end
   end
 end
