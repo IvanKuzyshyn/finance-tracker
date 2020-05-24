@@ -11,12 +11,5 @@
     </div>
   <% end %>
 
-  <% if @stock %>
-    <div>
-      <h3>Stock Info:</h3>
-      <div>Name: <%= @stock.ticker %></div>
-      <div>Company: <%= @stock.name %></div>
-      <div>Price: <%= @stock.last_price %></div>
-    </div>
-  <% end %>
+  <%= render "users/stock_search_result" %>
 </div>
