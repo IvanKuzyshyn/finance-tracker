@@ -21,7 +21,11 @@ class StocksController < ApplicationController
           last_price: client.price(stock_symbol)
       )
 
-      render "users/portfolio"
+      if @stock
+        respond_to do |format|
+          format.js { render partial: "users/stock_search_result" }
+        end
+      end
     rescue
       flash[:alert] = "Please provide valid Stock name"
       redirect_to portfolio_path

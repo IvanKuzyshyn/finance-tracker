@@ -2,7 +2,7 @@
 
 <div>
   <h3>Search Area</h3>
-  <%= form_tag search_stocks_path, method: :get do %>
+  <%= form_tag search_stocks_path, remote: true, method: :get do %>
     <div>
       <%= text_field_tag :stock, params[:stock], placeholder: "Enter Stock Name" %>
     </div>
@@ -11,5 +11,7 @@
     </div>
   <% end %>
 
-  <%= render "users/stock_search_result" %>
+  <div id="stock-search-result">
+    <%= render "users/stock_search_result" %>
+  </div>
 </div>
