@@ -1,0 +1,22 @@
+<div id="portfolio-table">
+  <table>
+    <thead>
+    <tr>
+      <td>Ticker</td>
+      <td>Name</td>
+      <td>Price</td>
+      <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @tracked_stocks.each do |stock| %>
+      <tr>
+        <td><%= stock.ticker %></td>
+        <td><%= stock.name %></td>
+        <td><%= stock.last_price %></td>
+        <td>do</td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
