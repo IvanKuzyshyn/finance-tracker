@@ -15,11 +15,7 @@ class StocksController < ApplicationController
   def render_stock_search_result(stock_symbol)
     client = Stock.client
     begin
-      @stock = Stock.new(
-          name: client.company(stock_symbol).company_name,
-          ticker: stock_symbol,
-          last_price: client.price(stock_symbol)
-      )
+      @stock = Stock.create_new(stock_symbol)
 
       if @stock
         respond_to do |format|
