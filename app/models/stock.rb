@@ -11,4 +11,16 @@ class Stock < ApplicationRecord
         endpoint: 'https://sandbox.iexapis.com/v1'
     )
   end
+
+  def self.create_new(ticker)
+    new(
+        name: client.company(ticker).company_name,
+        ticker: ticker,
+        last_price: client.price(ticker)
+    )
+  end
+
+  def self.find_already_existing(ticker)
+    where(ticker: ticker).first
+  end
 end
