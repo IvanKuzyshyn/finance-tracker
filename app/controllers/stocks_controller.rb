@@ -13,7 +13,6 @@ class StocksController < ApplicationController
   private
 
   def render_stock_search_result(stock_symbol)
-    client = Stock.client
     begin
       @stock = Stock.create_new(stock_symbol)
 
