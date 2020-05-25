@@ -14,4 +14,13 @@ class UserStocksController < ApplicationController
     redirect_to portfolio_path
   end
 
+  def destroy
+    stock = Stock.find(params[:id])
+    user_stock = UserStock.where(user_id: current_user.id, stock_id: stock.id).first
+
+    user_stock.destroy
+    flash[:notice] = "Tracking of #{stock.name} is stopped!"
+    redirect_to portfolio_path
+  end
+
 end
