@@ -1,11 +1,21 @@
 <%= render "layouts/messages" %>
 
-<% if @stock %>
-  <div>
-    <h3>Stock Info:</h3>
-    <div>Name: <%= @stock.ticker %></div>
-    <div>Company: <%= @stock.name %></div>
-    <div>Price: <%= @stock.last_price %></div>
-    <%= link_to 'Add this stock', user_stocks_path(ticker: @stock.ticker), method: :post %>
-  </div>
-<% end %>
+<% unless !@stock %>
+<div>
+  <h3>Stock Info:</h3>
+  <div>Name: <%=  @stock.ticker  %></div>
+  <div>Company:<%=  @stock.name  %></div>
+  <div>Price: <%= @stock.last_price %></div>
+      <% if current_user.can_track_stocks?(@stock.ticker) %>
+  <%=  link_to 'Add this stock', user_stocks_path(ticker: @stock.ticker), method: :post  %>
+  <%  else  %>
+  You already tracking
+    <%  unless current_user.under_stocks_limit?  %>
+    max count of stocks
+    <%  end  %>
+    <%  if current_user.stock_already_tracked?(@stock.ticker)  %>
+    this stock
+    <%  end  %>
+  <%  end  %>
+</div>
+<%  end %>
