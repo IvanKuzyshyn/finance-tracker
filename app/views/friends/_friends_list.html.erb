@@ -1,0 +1,16 @@
+<div id="friends-table">
+  <table>
+    <thead>
+    <tr>
+      <td>Name</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td><%= friend.full_name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

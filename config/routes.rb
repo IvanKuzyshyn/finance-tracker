@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'friends/index'
   resources :user_stocks, only: [:create, :destroy]
   devise_for :users
   root to: "home#index"
